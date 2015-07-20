@@ -1,0 +1,16 @@
+.nested-fields
+  %fieldset
+    = f.input :cond_type, as: :select,
+              collection: [[t(:and, scope: 'post_commit_actions.condition_group.cond_type.values'), 'and'],
+                           [t(:or, scope: 'post_commit_actions.condition_group.cond_type.values'), 'or']],
+              include_blank: false
+    = f.fields_for :condition_groups do |cg_form|
+      = render partial: 'post_commit_actions/shared/form/condition_group_fields', locals: {f: cg_form, level: level + 1}
+    - if level < 3
+      .links
+        = link_to_add_association t(:condition_group, scope: 'helpers.add_association.post_commit_action'),
+                                  f, :condition_groups, class: 'icon icon-add',
+                                  partial: 'post_commit_actions/shared/form/condition_group_fields',
+                                  force_non_association_create: true,
+                                  wrap_object: Proc.new { |condition| PostCommitAction::ConditionGroupForm.new(condition) },
+                                  render_options: {locals: {level: level + 1}}

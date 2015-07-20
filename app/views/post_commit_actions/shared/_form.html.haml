@@ -2,10 +2,4 @@
   %fieldset
     = f.fields_for :condition_group do |cg_form|
       = render partial: 'post_commit_actions/shared/form/condition_group_fields', locals: {f: cg_form, level: 0}
-    = f.input :action_type,
-              as: :select,
-              collection: [[t(:jenkins, scope: 'post_commit_actions.action_types'), :jenkins]],
-              include_blank: false
-    = f.input :description
-    = f.input :url
   = f.button :submit

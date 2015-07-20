@@ -6,6 +6,8 @@
               include_blank: false
     = f.fields_for :condition_groups do |cg_form|
       = render partial: 'post_commit_actions/shared/form/condition_group_fields', locals: {f: cg_form, level: level + 1}
+
+    - # quick workaround for cocoon (it continuously render nested partial to link attribute)
     - if level < 3
       .links
         = link_to_add_association t(:condition_group, scope: 'helpers.add_association.post_commit_action'),

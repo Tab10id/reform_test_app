@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/apotonick/disposable
+  revision: 76297847780f4a67819cf2f43b4b3095b2b5ec80
+  branch: master
+  specs:
+    disposable (0.1.9)
+      representable (>= 2.2.3, <= 2.3.0)
+      uber
+
+GIT
   remote: https://github.com/apotonick/reform
   revision: 2b9b86a433ac1d91e6e46f2aaa6e1ca3c351020d
   branch: master
@@ -47,9 +56,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
-    disposable (0.1.8)
-      representable (>= 2.2.3, <= 2.3.0)
-      uber
     erubis (2.7.0)
     execjs (2.5.2)
     haml (4.0.6)
@@ -146,6 +152,7 @@ PLATFORMS
 DEPENDENCIES
   cocoon
   coffee-rails
+  disposable!
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails

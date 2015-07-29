@@ -9,6 +9,7 @@ class PostCommitActionsController < ApplicationController
   def create
     if @form.validate(params[:post_commit_action])
       @form.save
+      redirect_to post_commit_actions_path
     else
       render 'new'
     end
@@ -19,8 +20,21 @@ class PostCommitActionsController < ApplicationController
   def update
     if @form.validate(params[:post_commit_action])
       @form.save
+      redirect_to post_commit_actions_path
     else
       render 'edit'
+    end
+  end
+
+  def index
+    @actions = PostCommitAction.all
+  end
+
+  def destroy
+    @action = find_action(params[:id])
+    if @action.present?
+      @action.destroy
+      redirect_to post_commit_actions_path
     end
   end
 

@@ -45,8 +45,8 @@ end
 # gem 'debugger', group: [:development, :test]
 
 
-gem 'disposable', git: 'https://github.com/apotonick/disposable', branch: 'master'
-gem 'reform', git: 'https://github.com/apotonick/reform', branch: 'master'
+gem 'disposable'
+gem 'reform'
 
 gem 'lotus-validations'
 

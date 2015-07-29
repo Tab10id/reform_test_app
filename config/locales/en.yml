@@ -20,4 +20,15 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  helpers:
+    submit:
+      post_commit_action:
+        save: Save action
+    add_association:
+      post_commit_action:
+        condition_group: Add condition group
+        condition: Add condition
+    remove_association:
+      post_commit_action:
+        condition_group: Del condition group
+        condition: Del condition

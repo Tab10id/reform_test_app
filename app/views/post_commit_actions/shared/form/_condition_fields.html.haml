@@ -1,0 +1,10 @@
+.nested-fields
+  %fieldset
+    = f.input :condition_type, as: :select,
+              collection: [[t(:path, scope: 'post_commit_actions.condition_types'), 'path'],
+                           [t(:branch, scope: 'post_commit_actions.condition_types'), 'branch']],
+              include_blank: false
+    = f.input :invert, as: :boolean
+    = f.input :value
+    = link_to_remove_association t(:condition, scope: 'helpers.remove_association.post_commit_action'), f,
+                                 class: 'icon icon-del'

@@ -1,0 +1,25 @@
+= link_to t(:new, scope: 'post_commit_actions.actions'),
+      new_post_commit_action_path,
+      class: 'icon icon-add'
+%h3= t(:index, scope: 'post_commit_actions.title')
+- if @actions.present?
+  %table.list
+    %thead
+      %tr
+        %th= t(:index, scope: 'post_commit_actions.actions')
+        %th
+    %tbody
+      - @actions.each do |action|
+        %tr{class: cycle('even', 'odd')}
+          %td
+            = action
+          %td
+            = link_to t(:edit, scope: 'post_commit_actions.actions'),
+                      edit_post_commit_action_path(id: action.id),
+                      class: 'icon icon-edit'
+            = link_to t(:destroy, scope: 'post_commit_actions.actions'),
+                      post_commit_action_path(id: action.id),
+                      method: 'delete',
+                      class: 'icon icon-del'
+- else
+  %p.nodata= t(:label_no_data)

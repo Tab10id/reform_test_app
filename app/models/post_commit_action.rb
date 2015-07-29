@@ -23,4 +23,14 @@ class PostCommitAction < ActiveRecord::Base
       url
     end
   end
+
+  def action_type=(action_type)
+    model_type = "post_commit_action/#{action_type}_action".camelize
+    model_type.constantize # Проверяем наличие соответствующего класса
+    self.type = model_type
+  end
+
+  def action_type
+    type.present? ? type.gsub(/^PostCommitAction::/, '').gsub(/Action$/, '').underscore : 'jenkins'
+  end
 end

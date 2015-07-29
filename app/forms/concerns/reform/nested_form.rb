@@ -2,16 +2,8 @@ module Concerns::Reform::NestedForm
   extend ActiveSupport::Concern
 
   included do
-    property :id, virtual: true
+    property :id, writeable: false
     property :_destroy, virtual: true
-    @reject_field = []
-  end
-
-  def sync_hash(options)
-    if fields._destroy == '1' || reject_fields?
-      model.mark_for_destruction
-    end
-    super(options)
   end
 
   def new_record?
@@ -22,17 +14,7 @@ module Concerns::Reform::NestedForm
     model.marked_for_destruction?
   end
 
-  def reject_fields?
-    self.class.reject_field.any? { |f| fields[f].blank? }
-  end
-
-  module ClassMethods
-    def reject_if_blank(field)
-      @reject_field << field
-    end
-
-    def reject_field
-      @reject_field
-    end
+  def mark_for_destruction
+    model.mark_for_destruction
   end
 end

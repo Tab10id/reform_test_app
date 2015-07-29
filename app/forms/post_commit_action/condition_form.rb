@@ -7,6 +7,4 @@ class PostCommitAction::ConditionForm < Reform::Form
   property :value
 
   validates :value, presence: true
-
-  delegates :validator, :validators_on
 end

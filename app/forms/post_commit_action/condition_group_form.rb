@@ -8,5 +8,14 @@ class PostCommitAction::ConditionGroupForm < Reform::Form
   #            form: PostCommitAction::ConditionGroupForm
   collection :conditions,
              form: PostCommitAction::ConditionForm,
-             populate_if_empty: PostCommitAction::Condition
+             populate_if_empty: PostCommitAction::Condition,
+             skip_if: :skip_condition?
+
+  private
+
+  def skip_condition?(fragment, _)
+    if fragment['_destroy'] == '1'
+      conditions.find{ |c| c.id.to_s == fragment['id'] }.mark_for_destruction
+    end
+  end
 end
